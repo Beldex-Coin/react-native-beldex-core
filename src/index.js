@@ -1,7 +1,4 @@
-import { NativeModules } from 'react-native'
+const { NativeModules } = require('react-native')
+const CppBridge = require('./CppBridge.js')
 
-const native = NativeModules.MyMoneroCore
-
-export function callMyMonero(method, jsonArguments) {
-  return native.callMyMonero(method, jsonArguments)
-}
+module.exports = new CppBridge(NativeModules.BeldexCore)
