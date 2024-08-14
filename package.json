@@ -1,11 +1,11 @@
 {
-  "name": "react-native-mymonero-core",
-  "version": "0.1.0",
-  "description": "React Native bindings for mymonero-core-cpp",
-  "homepage": "https://github.com/EdgeApp/react-native-mymonero-core",
+  "name": "react-native-beldex-core",
+  "version": "0.3.2",
+  "description": "React Native bindings for @bdxi/beldex-client",
+  "homepage": "https://github.com/Beldex-Coin/react-native-beldex-core.git",
   "repository": {
     "type": "git",
-    "url": "git@github.com:EdgeApp/react-native-mymonero-core.git"
+    "url": "git@github.com:Beldex-Coin/react-native-beldex-core.git"
   },
   "license": "BSD-3-Clause",
   "author": "Airbitz, Inc.",
@@ -14,22 +14,25 @@
     "Paul Puey <paul@edge.app>"
   ],
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "files": [
-    "android/build.gradle",
-    "android/src",
-    "CHANGELOG.md",
-    "ios/Libraries",
-    "ios/MyMoneroCore.h",
-    "ios/MyMoneroCore.mm",
-    "ios/react-native-mymonero-core.xcodeproj",
-    "package.json",
-    "react-native-mymonero-core.podspec",
-    "README.md",
-    "src"
+    "/android/build.gradle",
+    "/android/src/",
+    "/CHANGELOG.md",
+    "/ios/",
+    "/package.json",
+    "/react-native-beldex-core.podspec",
+    "/README.md",
+    "/src/"
   ],
   "scripts": {
     "format-java": "./android/format-java.sh",
     "update-sources": "ZERO_AR_DATE=1 node -r sucrase/register ./scripts/update-sources.ts"
+  },
+  "dependencies": {
+    "@bdxi/beldex-bigint": "^1.0.0",
+    "@bdxi/beldex-money-format": "^1.2.0",
+    "@bdxi/beldex-nettype": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.7",
