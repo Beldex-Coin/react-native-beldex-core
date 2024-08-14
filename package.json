@@ -1,6 +1,6 @@
 {
   "name": "react-native-beldex-core",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "React Native bindings for @bdxi/beldex-client",
   "homepage": "https://github.com/Beldex-Coin/react-native-beldex-core.git",
   "repository": {
