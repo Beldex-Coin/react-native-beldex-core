@@ -37,18 +37,18 @@ async function downloadSources(): Promise<void> {
   getRepo(
     'beldex-core-custom',
     'https://github.com/Beldex-Coin/beldex-core-custom.git',
-    '63175e7ec8671b5c2c9dbfecbbda6c01d6654659'
+    'ed805b9b6d11294f16c0e3edfde1b82c35857154'
   )
   getRepo(
     // Use the webassembly-cleanup branch:
     'beldex-core-cpp',
     'https://github.com/Beldex-Coin/beldex-core-cpp.git',
-    'f35b6cc267891b253770b17e267a83667bcaa1a8'
+    '9d91046b700a24d41602f3ab40157248a2a25462'
   )
   getRepo(
     'beldex-utils',
     'https://github.com/Beldex-Coin/beldex-utils.git',
-    '64bc76a6583020f5ccec6f2dc75554e829bd0f06'
+    '3aef055c9883e5e240c7dba8ae78ff7cfe261a3a'
   )
   await disklet.setText(
     // Upstream beldex-utils wrongly includes this file, so make a dummy:
@@ -150,8 +150,8 @@ const sources: string[] = [
   'beldex-core-cpp/src/serial_bridge_index.cpp',
   'beldex-core-cpp/src/serial_bridge_utils.cpp',
   'beldex-core-cpp/src/tools__ret_vals.cpp',
-  'beldex-utils/src/emscr_SendFunds_bridge.cpp',
-  'beldex-utils/src/SendFundsFormSubmissionController.cpp',
+  'beldex-utils/packages/beldex-client/src/emscr_SendFunds_bridge.cpp',
+  'beldex-utils/packages/beldex-client/src/SendFundsFormSubmissionController.cpp',
   'beldex-wrapper/beldex-methods.cpp'
 ]
 
@@ -210,7 +210,7 @@ async function generateAndroidBuild() {
     'add_compile_options(-fvisibility=hidden -w)',
     ...defines.map(name => `add_definitions("-D${name}")`),
     ...includePaths.map(path => `include_directories("${path}")`),
-    `add_library(beldex-jni SHARED ${sourceList})`
+    `add_library(mybeldex-jni SHARED ${sourceList})`
   ]
   await disklet.setText(src + 'CMakeLists.txt', cmakeLines.join('\n'))
 }
@@ -225,7 +225,9 @@ function inferHeaders(): string[] {
   const cflags = [
     ...defines.map(name => `-D${name}`),
     ...includePaths.map(path => `-I${join(tmp, path)}`),
-    '-Wno-error=reserved-user-defined-literal'
+    '-Wno-error=reserved-user-defined-literal',
+    '-D_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR',
+    '-D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION'
   ]
   const cxxflags = [...cflags, '-std=c++17']
 
